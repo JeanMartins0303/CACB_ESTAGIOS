@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fórum - PsiEstágios</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>Centro Acadêmico de Psicologia Carolina Bori</h1>
+                        <p>Conectando estudantes a oportunidades</p>
+                    </div>
+                </div>
+                <nav class="nav">
+                    <a href="index.html" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        Início
+                    </a>
+                    <a href="forum.html" class="nav-link active">
+                        <i class="fas fa-comments"></i>
+                        Fórum
+                    </a>
+                    <a href="guias.html" class="nav-link">
+                        <i class="fas fa-book"></i>
+                        Guias
+                    </a>
+                    <button id="theme-toggle" class="theme-toggle">
+                        <i class="fas fa-sun" id="theme-icon"></i>
+                    </button>
+                    <div class="user-avatar">
+                        <img src="https://via.placeholder.com/32" alt="Avatar">
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main forum-page">
+        <div class="container">
+            <div class="forum-header">
+                <h2>Fórum de Discussão</h2>
+                <button class="btn btn-primary" id="new-topic-btn">
+                    <i class="fas fa-plus"></i>
+                    Novo Tópico
+                </button>
+            </div>
+
+            <div class="forum-filters">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar tópicos..." id="forum-search">
+                </div>
+                <div class="filter-group">
+                    <select id="forum-category" class="select-styled">
+                        <option value="">Todas as categorias</option>
+                        <option value="duvidas">Dúvidas</option>
+                        <option value="experiencias">Experiências</option>
+                        <option value="dicas">Dicas</option>
+                        <option value="vagas">Vagas</option>
+                    </select>
+                    <select id="forum-sort" class="select-styled">
+                        <option value="recent">Mais recentes</option>
+                        <option value="popular">Mais populares</option>
+                        <option value="unanswered">Sem respostas</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="forum-topics">
+                <!-- Tópicos serão renderizados aqui via JavaScript -->
+            </div>
+
+            <div class="forum-pagination">
+                <button class="btn btn-secondary" id="prev-page">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <span id="page-info">Página 1 de 5</span>
+                <button class="btn btn-secondary" id="next-page">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

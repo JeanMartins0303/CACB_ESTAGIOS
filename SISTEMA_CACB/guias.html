@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guias - PsiEstágios</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>Centro Acadêmico de Psicologia Carolina Bori</h1>
+                        <p>Conectando estudantes a oportunidades</p>
+                    </div>
+                </div>
+                <nav class="nav">
+                    <a href="index.html" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        Início
+                    </a>
+                    <a href="forum.html" class="nav-link">
+                        <i class="fas fa-comments"></i>
+                        Fórum
+                    </a>
+                    <a href="guias.html" class="nav-link active">
+                        <i class="fas fa-book"></i>
+                        Guias
+                    </a>
+                    <button id="theme-toggle" class="theme-toggle">
+                        <i class="fas fa-sun" id="theme-icon"></i>
+                    </button>
+                    <div class="user-avatar">
+                        <img src="https://via.placeholder.com/32" alt="Avatar">
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main guides-page">
+        <div class="container">
+            <div class="guides-header">
+                <h2>Guias e Recursos</h2>
+                <div class="guides-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar guias..." id="guides-search">
+                </div>
+            </div>
+
+            <div class="guides-categories">
+                <button class="category-btn active" data-category="all">Todos</button>
+                <button class="category-btn" data-category="iniciantes">Para Iniciantes</button>
+                <button class="category-btn" data-category="documentacao">Documentação</button>
+                <button class="category-btn" data-category="carreira">Carreira</button>
+                <button class="category-btn" data-category="legislacao">Legislação</button>
+            </div>
+
+            <div class="guides-grid">
+                <div class="guide-card" data-category="iniciantes">
+                    <div class="guide-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-tag">Para Iniciantes</span>
+                        <h4>Manual do Estagiário</h4>
+                        <p>Guia completo com informações essenciais para iniciar seu estágio</p>
+                        <div class="guide-meta">
+                            <span><i class="fas fa-clock"></i> 15 min de leitura</span>
+                            <span><i class="fas fa-download"></i> PDF</span>
+                        </div>
+                        <a href="#" class="btn btn-primary btn-sm">Ler Guia</a>
+                    </div>
+                </div>
+
+                <div class="guide-card" data-category="documentacao">
+                    <div class="guide-icon">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-tag">Documentação</span>
+                        <h4>Checklist de Documentação</h4>
+                        <p>Lista completa de documentos necessários para formalizar seu estágio</p>
+                        <div class="guide-meta">
+                            <span><i class="fas fa-clock"></i> 10 min de leitura</span>
+                            <span><i class="fas fa-download"></i> PDF</span>
+                        </div>
+                        <a href="#" class="btn btn-primary btn-sm">Ver Checklist</a>
+                    </div>
+                </div>
+
+                <div class="guide-card" data-category="legislacao">
+                    <div class="guide-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-tag">Legislação</span>
+                        <h4>Direitos e Deveres</h4>
+                        <p>Conheça seus direitos e deveres como estagiário de psicologia</p>
+                        <div class="guide-meta">
+                            <span><i class="fas fa-clock"></i> 20 min de leitura</span>
+                            <span><i class="fas fa-download"></i> PDF</span>
+                        </div>
+                        <a href="#" class="btn btn-primary btn-sm">Saiba Mais</a>
+                    </div>
+                </div>
+
+                <div class="guide-card" data-category="carreira">
+                    <div class="guide-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="guide-content">
+                        <span class="guide-tag">Carreira</span>
+                        <h4>Dicas de Entrevista</h4>
+                        <p>Prepare-se para as entrevistas de estágio com nossas dicas práticas</p>
+                        <div class="guide-meta">
+                            <span><i class="fas fa-clock"></i> 12 min de leitura</span>
+                            <span><i class="fas fa-download"></i> PDF</span>
+                        </div>
+                        <a href="#" class="btn btn-primary btn-sm">Ver Dicas</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

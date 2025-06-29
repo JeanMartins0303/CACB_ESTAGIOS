@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CACB - Centro Acadêmico de Psicologia Carolina Bori</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="terms-script.js" defer></script>
+    <script src="hours-script.js" defer></script>
+    <script src="ethics-script.js" defer></script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>Centro Acadêmico de Psicologia Carolina Bori</h1>
+                        <p>Conectando estudantes a oportunidades</p>
+                    </div>
+                </div>
+                <nav class="nav">
+                    <a href="index.html" class="nav-link active">
+                        <i class="fas fa-home"></i>
+                        Início
+                    </a>
+                    <a href="forum.html" class="nav-link">
+                        <i class="fas fa-comments"></i>
+                        Fórum
+                    </a>
+                    <a href="guias.html" class="nav-link">
+                        <i class="fas fa-book"></i>
+                        Guias
+                    </a>
+                    <button id="theme-toggle" class="theme-toggle">
+                        <i class="fas fa-sun" id="theme-icon"></i>
+                    </button>
+                    <div class="user-avatar">
+                        <img src="https://via.placeholder.com/32" alt="Avatar">
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <!-- Tabs Navigation -->
+            <div class="tabs">
+                <button class="tab-button active" data-tab="buscar">
+                    <i class="fas fa-search"></i>
+                    Buscar Estágios
+                </button>
+                <button class="tab-button" data-tab="cadastrar">
+                    <i class="fas fa-plus"></i>
+                    Cadastrar Estágio
+                </button>
+                <button class="tab-button" data-tab="termos">
+                    <i class="fas fa-file-contract"></i>
+                    Termos de Estágio
+                </button>
+                <button class="tab-button" data-tab="perfil">
+                    <i class="fas fa-user"></i>
+                    Meu Perfil
+                </button>
+                <button class="tab-button" data-tab="dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    Dashboard
+                </button>
+                <button class="tab-button" data-tab="configuracoes">
+                    <i class="fas fa-cog"></i>
+                    Configurações
+                </button>
+                <button class="tab-button" data-tab="usuarios">
+                    <i class="fas fa-users-cog"></i>
+                    Usuários
+                </button>
+                <button class="tab-button" data-tab="horas">
+                    <i class="fas fa-clock"></i>
+                    Registro de Horas
+                </button>
+                <button class="tab-button" data-tab="etica">
+                    <i class="fas fa-book-reader"></i>
+                    Código de Ética
+                </button>
+            </div>
+
+            <!-- Tab Content: Registro de Horas -->
+            <div id="horas" class="tab-content">
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-clock"></i> Registro de Horas de Estágio</h3>
+                        <div class="total-hours">
+                            <span>Total de Horas: <strong id="total-hours">0</strong> / 80</span>
+                            <div class="progress-bar">
+                                <div class="progress" id="hours-progress" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="hours-form">
+                            <div class="student-info">
+                                <div class="form-row">
+                                    <div class="form-group flex-grow">
+                                        <label>Nome do Aluno</label>
+                                        <input type="text" id="student-name" placeholder="Digite seu nome completo" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>RA</label>
+                                        <input type="text" id="student-ra" placeholder="Seu RA" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group flex-grow">
+                                        <label>Supervisor</label>
+                                        <input type="text" id="supervisor-name" placeholder="Nome do supervisor" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Semestre</label>
+                                        <input type="text" id="semester" placeholder="Ex: 2024/1" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Local de Estágio</label>
+                                    <input type="text" id="internship-location" placeholder="Nome da instituição/local de estágio" required>
+                                </div>
+                            </div>
+                            <div class="activity-form">
+                                <h4>Registro de Atividade</h4>
+                                <div class="form-group">
+                                    <label>Data</label>
+                                    <input type="date" id="activity-date" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Descrição da Atividade</label>
+                                    <textarea id="activity-description" rows="3" placeholder="Descreva as atividades realizadas..." required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Horas Realizadas</label>
+                                    <input type="number" id="activity-hours" min="1" max="12" step="0.5" required>
+                                </div>
+                                <div class="form-actions">
+                                    <button class="btn btn-primary" onclick="addActivityEntry()">
+                                        <i class="fas fa-plus"></i> Adicionar Registro
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hours-list">
+                            <h4>Registros de Atividades</h4>
+                            <div class="activities-container" id="activities-list">
+                                <!-- As atividades serão inseridas aqui dinamicamente -->
+                            </div>
+                        </div>
+                        <div class="hours-actions">
+                            <button class="btn btn-secondary" onclick="generateHoursReport()">
+                                <i class="fas fa-file-alt"></i> Gerar Relatório
+                            </button>
+                            <button class="btn btn-primary" onclick="printHoursReport()">
+                                <i class="fas fa-print"></i> Imprimir Relatório
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Código de Ética -->
+            <div id="etica" class="tab-content">
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-book-reader"></i> Código de Ética Profissional do Psicólogo</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="ethics-container">
+                            <div class="ethics-actions">
+                                <div class="admin-actions">
+                                    <label class="btn btn-secondary">
+                                        <i class="fas fa-upload"></i> Atualizar Código de Ética
+                                        <input type="file" id="ethics-upload" accept=".pdf" style="display: none;">
+                                    </label>
+                                </div>
+                                <button class="btn btn-primary" onclick="downloadEthicsDocument()">
+                                    <i class="fas fa-download"></i> Baixar PDF
+                                </button>
+                            </div>
+                            <div class="ethics-preview" id="ethics-preview">
+                                <!-- O conteúdo será carregado dinamicamente -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Termos de Estágio -->
+            <div id="termos" class="tab-content">
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-file-contract"></i> Termos de Compromisso de Estágio</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="terms-container">
+                            <div class="terms-preview">
+                                <h4>Visualização do Termo</h4>
+                                <div class="terms-toolbar" id="terms-toolbar">
+                                    <button onclick="formatText('bold')" title="Negrito">
+                                        <i class="fas fa-bold"></i>
+                                    </button>
+                                    <button onclick="formatText('italic')" title="Itálico">
+                                        <i class="fas fa-italic"></i>
+                                    </button>
+                                    <button onclick="formatText('underline')" title="Sublinhado">
+                                        <i class="fas fa-underline"></i>
+                                    </button>
+                                    <span class="separator">|</span>
+                                    <button onclick="formatText('alignLeft')" title="Alinhar à Esquerda">
+                                        <i class="fas fa-align-left"></i>
+                                    </button>
+                                    <button onclick="formatText('alignCenter')" title="Centralizar">
+                                        <i class="fas fa-align-center"></i>
+                                    </button>
+                                    <button onclick="formatText('alignRight')" title="Alinhar à Direita">
+                                        <i class="fas fa-align-right"></i>
+                                    </button>
+                                    <button onclick="formatText('alignJustify')" title="Justificar">
+                                        <i class="fas fa-align-justify"></i>
+                                    </button>
+                                    <span class="separator">|</span>
+                                    <button onclick="formatText('indent')" title="Aumentar Recuo">
+                                        <i class="fas fa-indent"></i>
+                                    </button>
+                                    <button onclick="formatText('outdent')" title="Diminuir Recuo">
+                                        <i class="fas fa-outdent"></i>
+                                    </button>
+                                </div>
+                                <div class="terms-document" id="terms-preview" contenteditable="false">
+                                    <h2>TERMO DE COMPROMISSO DE ESTÁGIO</h2>
+                                    <p>Eu, ____________________________________________</p>
+                                    <p>CPF: _______________________</p>
+                                    <p>RA: _________________ acadêmico do Curso de Psicologia do Centro Universitário UniCuritiba, regularmente matriculado na disciplina de ________________________________________, assumo o compromisso de cumprir as condições abaixo referentes à realização das atividades de estágio.</p>
+                                    
+                                    <ol>
+                                        <li>Cumprir os preceitos éticos profissionais relativos à atividade do psicólogo, tanto no formato remoto quanto presencial, respeitando as diretrizes estabelecidas pelo Código de Ética Profissional do Psicólogo e as orientações recebidas pela instituição de ensino;</li>
+                                        <li>Manter boas práticas de relacionamento interpessoal com todos os envolvidos no ambiente de estágio, incluindo clientes, colegas, professores, coordenadores e funcionários, tanto em contextos presenciais quanto remotos;</li>
+                                        <li>Garantir a infraestrutura necessária para o estágio remoto, incluindo acesso às tecnologias adequadas para a realização dos atendimentos e um espaço físico que assegure a privacidade e o sigilo das informações compartilhadas durante o atendimento;</li>
+                                        <li>Agendar previamente o uso das salas e equipamentos tecnológicos da Clínica Escola, quando não houver espaço apropriado ou acesso às tecnologias necessárias para o atendimento online;</li>
+                                        <li>Durante o atendimento, garantir que outros equipamentos eletrônicos, que não sejam utilizados no atendimento, permaneçam desligados, a fim de evitar distrações e garantir a qualidade do serviço;</li>
+                                        <li>Manter sigilo sobre todas as informações, dados, documentos e registros a que tiver acesso durante a realização do estágio, tanto durante a vigência do estágio quanto após sua finalização. O estagiário compromete-se a não utilizar esses dados em benefício próprio ou de terceiros, e a não divulgar qualquer informação por meio verbal, impresso, eletrônico ou outro. A reprodução, fotocópia, digitalização ou gravação de documentos, fora do contexto das atividades autorizadas, é estritamente proibida;</li>
+                                        <li>Procedimentos em situações de emergência: Em caso de emergências clínicas ou situações inesperadas durante o atendimento psicológico ou estágio, o estagiário deverá comunicar imediatamente o supervisor e/ou responsável pela clínica, para que as providências sejam tomadas;</li>
+                                        <li>Responsabilidade pela comunicação com o paciente/cliente, incluindo a organização da agenda de atendimentos e o envio de links para atendimentos remotos. O estagiário também se compromete a orientar o paciente sobre o formato do atendimento online, se for o caso;</li>
+                                        <li>Comunicar qualquer alteração ou dúvida relacionada ao atendimento/prática de estágio de maneira clara e imediata, através do e-mail oficial agendapsi@unicuritiba.com.br pelo telefone (41) 99134-5584 ou pessoalmente na clínica escola, com o responsável do local;</li>
+                                        <li>Desempenhar as atividades de estágio com responsabilidade, em conformidade com o Código de Ética Profissional. O estagiário deverá cumprir todas as obrigações acadêmicas, incluindo leituras, elaboração de relatórios, trabalhos, horários, cronogramas e prazos estabelecidos pela instituição de ensino;</li>
+                                        <li>Comprometimento com a ética na elaboração de relatórios e documentos acadêmicos: o estagiário reconhece que é estritamente proibido o plágio, ou seja, a reprodução não autorizada de ideias ou conceitos sem a devida citação das fontes, assim como a não utilizar programas de inteligência artificial para gerar trabalhos/relatórios/documentos. O descumprimento dessa norma poderá resultar em reprovação acadêmica e possíveis sanções judiciais;</li>
+                                        <li>Zelar pelo uso adequado das Tecnologias de Informação e Comunicação (TICs) e pelos instrumentos técnicos utilizados durante o estágio, assegurando que sejam operados de acordo com as normas estabelecidas pela instituição de ensino e pela ética profissional;</li>
+                                        <li>Enviar os registros documentais solicitados pelo supervisor no canal que o mesmo solicitar (forms/e-mail/chaves@1life.com.br), sempre que solicitado;</li>
+                                        <li>Início do estágio: O estágio só deverá iniciar após a devida formalização do contrato de estágio no Portal da Anima em sua plataforma de estágios, conforme as orientações da instituição, sendo responsabilidade do estagiário a realização e o acompanhamento da efetivação do referido contrato;</li>
+                                        <li>Faltas em estágio e na supervisão: O estagiário compromete-se a cumprir pontualmente todas as atividades de estágio e as supervisões agendadas. A falta no estágio ou na supervisão, mesmo quando justificada, estará sujeita à análise e ponderação do professor supervisor, que decidirá sobre a aceitabilidade da justificativa apresentada. Em caso de falta aceita, o estagiário deverá repor as horas faltantes conforme as orientações da supervisão, podendo a reprovação ocorrer caso as faltas não sejam justificadas ou a reposição das horas não seja realizada dentro dos prazos estabelecidos pela instituição;</li>
+                                        <li>Estabelecimento do Prazo: O estudante deverá iniciar a execução das atividades práticas do estágio em até __________ (número de dias/semanas), contados a partir da data de assinatura do presente termo;</li>
+                                        <li>Flexibilização Mediante Justificativa: Eventuais alterações no prazo de início deverão ser solicitadas formalmente e com antecedência mínima de 10 dias ao supervisor de estágio, acompanhadas de justificativa plausível e documentação comprobatória, caso necessário.</li>
+                                    </ol>
+                                    
+                                    <p>Comprometo-me a cumprir integralmente as condições do presente termo de compromisso, sob pena de responder civil e criminalmente pelas consequências do não cumprimento, sem prejuízo da reparação civil dos danos causados à Instituição de Ensino e a terceiros.</p>
+                                    
+                                    <div style="margin-top: 50px;">
+                                        <p>Nome do aluno: _________________________________</p>
+                                        <p>RA: _________________________________</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="terms-actions">
+                                <button class="btn btn-primary" onclick="printTerms()">
+                                    <i class="fas fa-print"></i> Imprimir Termo
+                                </button>
+                                <button class="btn btn-secondary" onclick="downloadTerms()">
+                                    <i class="fas fa-download"></i> Download PDF
+                                </button>
+                                <button class="btn btn-edit" onclick="editTerms()" id="edit-terms-btn">
+                                    <i class="fas fa-edit"></i> Editar Termo
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Buscar Estágios -->
+            <div id="buscar" class="tab-content active">
+                <!-- Filtros -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-filter"></i> Filtros de Busca</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="filters-grid">
+                            <div class="form-group">
+                                <label>Buscar</label>
+                                <input type="text" placeholder="Nome da instituição..." id="search-input">
+                            </div>
+                            <div class="form-group">
+                                <label>Área</label>
+                                <select id="area-select">
+                                    <option value="">Selecione a área</option>
+                                    <option value="clinica">Psicologia Clínica</option>
+                                    <option value="hospitalar">Psicologia Hospitalar</option>
+                                    <option value="escolar">Psicologia Escolar</option>
+                                    <option value="organizacional">Psicologia Organizacional</option>
+                                    <option value="social">Psicologia Social</option>
+                                    <option value="juridica">Psicologia Jurídica</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Cidade</label>
+                                <select id="city-select">
+                                    <option value="">Selecione a cidade</option>
+                                    <option value="sao-paulo">Curitiba</option>
+                                    <option value="rio-janeiro">São José</option>
+                                    <option value="belo-horizonte">Fazenda Rio Grande</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary" onclick="buscarEstagios()">
+                                    <i class="fas fa-search"></i>
+                                    Buscar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lista de Estágios -->
+                <div id="estagios-list" class="estagios-grid">
+                    <!-- Estágios serão carregados aqui via JavaScript -->
+                </div>
+            </div>
+
+            <!-- Tab Content: Cadastrar Estágio -->
+            <div id="cadastrar" class="tab-content">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="gradient-text">Cadastrar Novo Estágio</h2>
+                        <p>Compartilhe uma oportunidade de estágio com outros estudantes</p>
+                    </div>
+                    <div class="card-content">
+                        <form id="cadastro-form" class="form">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Nome da Instituição *</label>
+                                    <input type="text" placeholder="Ex: Hospital das Clínicas" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>CNPJ</label>
+                                    <input type="text" placeholder="00.000.000/0000-00">
+                                </div>
+                                <div class="form-group">
+                                    <label>Área de Atuação *</label>
+                                    <select required>
+                                        <option value="">Selecione a área</option>
+                                        <option value="clinica">Psicologia Clínica</option>
+                                        <option value="hospitalar">Psicologia Hospitalar</option>
+                                        <option value="escolar">Psicologia Escolar</option>
+                                        <option value="organizacional">Psicologia Organizacional</option>
+                                        <option value="social">Psicologia Social</option>
+                                        <option value="juridica">Psicologia Jurídica</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Cidade *</label>
+                                    <input type="text" placeholder="Ex: São Paulo" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Carga Horária Semanal *</label>
+                                    <input type="text" placeholder="Ex: 20h/semana" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Remuneração</label>
+                                    <input type="text" placeholder="Ex: R$ 800,00 ou Não remunerado">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Descrição das Atividades *</label>
+                                <textarea
+                                    placeholder="Descreva as principais atividades que o estagiário irá desenvolver..."
+                                    required></textarea>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Cadastrar Estágio</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Tab Content: Perfil -->
+            <div id="perfil" class="tab-content">
+                <div class="profile-grid">
+                    <div class="card profile-card">
+                        <div class="card-content profile-info">
+                            <div class="avatar-large">
+                                <img src="https://via.placeholder.com/96" alt="Avatar">
+                            </div>
+                            <h3>João Silva</h3>
+                            <p>Estudante de Psicologia - 7º Semestre</p>
+                            <div class="profile-details">
+                                <p>Universidade Federal de São Paulo</p>
+                                <p>joao.silva@unifesp.br</p>
+                            </div>
+                            <button class="btn btn-primary">Editar Perfil</button>
+                        </div>
+                    </div>
+
+                    <div class="profile-content">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Meus Estágios</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="estagio-item completed">
+                                    <div class="estagio-info">
+                                        <h4>Clínica Mente Sã</h4>
+                                        <p>Psicologia Clínica • Concluído</p>
+                                    </div>
+                                    <span class="badge badge-success">Concluído</span>
+                                </div>
+                                <div class="estagio-item active">
+                                    <div class="estagio-info">
+                                        <h4>Hospital das Clínicas</h4>
+                                        <p>Psicologia Hospitalar • Em andamento</p>
+                                    </div>
+                                    <span class="badge badge-primary">Em andamento</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Áreas de Interesse</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="tags">
+                                    <span class="tag">Psicologia Clínica</span>
+                                    <span class="tag">Psicologia Hospitalar</span>
+                                    <span class="tag">Terapia Cognitiva</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Dashboard -->
+            <div id="dashboard" class="tab-content">
+                <div class="stats-grid">
+                    <div class="stat-card stat-teal">
+                        <div class="stat-content">
+                            <div class="stat-info">
+                                <p>Total de Estágios</p>
+                                <h3>1,247</h3>
+                            </div>
+                            <i class="fas fa-building stat-icon"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card stat-cyan">
+                        <div class="stat-content">
+                            <div class="stat-info">
+                                <p>Estudantes Ativos</p>
+                                <h3>3,891</h3>
+                            </div>
+                            <i class="fas fa-users stat-icon"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card stat-blue">
+                        <div class="stat-content">
+                            <div class="stat-info">
+                                <p>Avaliação Média</p>
+                                <h3>4.7</h3>
+                            </div>
+                            <i class="fas fa-star stat-icon"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card stat-emerald">
+                        <div class="stat-content">
+                            <div class="stat-info">
+                                <p>Novos Esta Semana</p>
+                                <h3>23</h3>
+                            </div>
+                            <i class="fas fa-chart-line stat-icon"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Estágios Mais Bem Avaliados</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="ranking-list">
+                                <div class="ranking-item">
+                                    <div class="ranking-number">1</div>
+                                    <div class="ranking-info">
+                                        <h4>Hospital das Clínicas</h4>
+                                        <p>Psicologia Hospitalar</p>
+                                    </div>
+                                    <div class="rating">
+                                        <i class="fas fa-star"></i>
+                                        <span>4.8</span>
+                                    </div>
+                                </div>
+                                <div class="ranking-item">
+                                    <div class="ranking-number">2</div>
+                                    <div class="ranking-info">
+                                        <h4>Clínica Mente Sã</h4>
+                                        <p>Psicologia Clínica</p>
+                                    </div>
+                                    <div class="rating">
+                                        <i class="fas fa-star"></i>
+                                        <span>4.6</span>
+                                    </div>
+                                </div>
+                                <div class="ranking-item">
+                                    <div class="ranking-number">3</div>
+                                    <div class="ranking-info">
+                                        <h4>Escola Municipal Santos Dumont</h4>
+                                        <p>Psicologia Escolar</p>
+                                    </div>
+                                    <div class="rating">
+                                        <i class="fas fa-star"></i>
+                                        <span>4.9</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Distribuição por Área</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="distribution-list">
+                                <div class="distribution-item">
+                                    <span>Psicologia Clínica</span>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" style="width: 85%"></div>
+                                        <span class="progress-value">342</span>
+                                    </div>
+                                </div>
+                                <div class="distribution-item">
+                                    <span>Psicologia Hospitalar</span>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" style="width: 65%"></div>
+                                        <span class="progress-value">198</span>
+                                    </div>
+                                </div>
+                                <div class="distribution-item">
+                                    <span>Psicologia Escolar</span>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" style="width: 45%"></div>
+                                        <span class="progress-value">156</span>
+                                    </div>
+                                </div>
+                                <div class="distribution-item">
+                                    <span>Psicologia Organizacional</span>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" style="width: 35%"></div>
+                                        <span class="progress-value">134</span>
+                                    </div>
+                                </div>
+                                <div class="distribution-item">
+                                    <span>Psicologia Social</span>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" style="width: 25%"></div>
+                                        <span class="progress-value">89</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Configurações -->
+            <div id="configuracoes" class="tab-content">
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-cog"></i> Configurações do Sistema</h3>
+                    </div>
+                    <div class="card-content">
+                        <form id="config-form" class="form">
+                            <div class="form-group">
+                                <label>Tema do Sistema</label>
+                                <select id="theme-select">
+                                    <option value="light">Tema Claro</option>
+                                    <option value="dark">Tema Escuro</option>
+                                    <option value="auto">Automático (Sistema)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Notificações</label>
+                                <div class="checkbox-group">
+                                    <label class="checkbox">
+                                        <input type="checkbox" id="notify-new-internships">
+                                        Novos estágios disponíveis
+                                    </label>
+                                    <label class="checkbox">
+                                        <input type="checkbox" id="notify-messages">
+                                        Mensagens recebidas
+                                    </label>
+                                    <label class="checkbox">
+                                        <input type="checkbox" id="notify-updates">
+                                        Atualizações do sistema
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Idioma</label>
+                                <select id="language-select">
+                                    <option value="pt-BR">Português (Brasil)</option>
+                                    <option value="en">English</option>
+                                    <option value="es">Español</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Privacidade</label>
+                                <div class="checkbox-group">
+                                    <label class="checkbox">
+                                        <input type="checkbox" id="profile-public">
+                                        Perfil público
+                                    </label>
+                                    <label class="checkbox">
+                                        <input type="checkbox" id="show-email">
+                                        Mostrar email publicamente
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Salvar Configurações</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Usuários -->
+            <div id="usuarios" class="tab-content">
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-users-cog"></i> Gerenciamento de Usuários</h3>
+                        <button class="btn btn-primary" id="add-user-btn">
+                            <i class="fas fa-user-plus"></i>
+                            Novo Usuário
+                        </button>
+                    </div>
+                    <div class="card-content">
+                        <div class="users-filters">
+                            <div class="form-group">
+                                <input type="text" placeholder="Buscar usuários..." id="user-search">
+                            </div>
+                            <div class="form-group">
+                                <select id="user-role-filter">
+                                    <option value="">Todos os papéis</option>
+                                    <option value="admin">Administrador</option>
+                                    <option value="coordinator">Coordenador</option>
+                                    <option value="student">Estudante</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select id="user-status-filter">
+                                    <option value="">Todos os status</option>
+                                    <option value="active">Ativo</option>
+                                    <option value="inactive">Inativo</option>
+                                    <option value="pending">Pendente</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="users-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>Email</th>
+                                        <th>Papel</th>
+                                        <th>Status</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="users-list">
+                                    <!-- Usuários serão carregados aqui via JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="pagination">
+                            <button class="btn btn-secondary" id="prev-page"><i class="fas fa-chevron-left"></i></button>
+                            <span id="page-info">Página 1 de 1</span>
+                            <button class="btn btn-secondary" id="next-page"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
