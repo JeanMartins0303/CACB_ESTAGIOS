@@ -508,12 +508,12 @@ body {
 }
 
 .nav-link.active {
-  background-color: var(--primary-teal);
+      background: linear-gradient(135deg,  #54aae3, #111e83);
   color: white;
 }
 
 .nav-link.active:hover {
-  background-color: var(--primary-cyan);
+  background-color: #1e6cab;
 }
 
 .theme-toggle {
