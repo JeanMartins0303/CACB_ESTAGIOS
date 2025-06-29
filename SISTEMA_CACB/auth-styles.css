@@ -7,24 +7,24 @@
 
 :root {
   /* Cores Principais */
-  --primary-teal: #14b8a6;
-  --primary-cyan: #0891b2;
-  --primary-blue: #1e40af;
-  --primary-emerald: #059669;
+  --primary-teal: #4299e1;
+  --primary-cyan: #3182ce;
+  --primary-blue: #2b6cb0;
+  --primary-emerald: #2c5282;
 
   /* Cores de Fundo */
-  --bg-primary: #f0fdfa;
-  --bg-secondary: #ecfeff;
-  --bg-tertiary: #dbeafe;
+  --bg-primary: #f0f7ff;
+  --bg-secondary: #e6f3ff;
+  --bg-tertiary: #d1e8ff;
 
   /* Cores de Texto */
-  --text-primary: #1f2937;
-  --text-secondary: #6b7280;
-  --text-muted: #9ca3af;
+  --text-primary: #2c5282;
+  --text-secondary: #4a5568;
+  --text-muted: #718096;
 
   /* Cores de Card */
-  --card-bg: rgba(255, 255, 255, 0.8);
-  --card-border: rgba(20, 184, 166, 0.1);
+  --card-bg: rgba(247, 250, 255, 0.9);
+  --card-border: rgba(49, 130, 206, 0.1);
 
   /* Sombras */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -101,7 +101,7 @@ body {
 }
 
 .back-link:hover {
-  color: var(--primary-teal);
+  color: var(--primary-cyan);
 }
 
 .theme-toggle {
@@ -116,8 +116,8 @@ body {
 }
 
 .theme-toggle:hover {
-  color: var(--primary-teal);
-  background: rgba(20, 184, 166, 0.1);
+  color: var(--primary-cyan);
+  background: rgba(49, 130, 206, 0.1);
 }
 
 .logout-btn {
@@ -139,9 +139,9 @@ body {
 }
 
 .logout-btn:hover {
-  color: var(--primary-teal);
-  background: rgba(20, 184, 166, 0.1);
-  border-color: var(--primary-teal);
+  color: var(--primary-cyan);
+  background: rgba(49, 130, 206, 0.1);
+  border-color: var(--primary-cyan);
 }
 
 /* Notification System */
